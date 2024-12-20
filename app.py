@@ -1,4 +1,3 @@
-import math
 from flask import Flask, render_template
 from models import initialize_database, Record
 from routes import blueprints
