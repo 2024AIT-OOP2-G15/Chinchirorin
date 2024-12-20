@@ -1,9 +1,10 @@
-from peewee import Model, CharField, IntegerField
+from peewee import Model, CharField, BooleanField, IntegerField
 from .db import db
 
 class Record(Model):
 
     name = CharField()
+    isWin = BooleanField()
     pinzoro = IntegerField()
     zorome = IntegerField()
     sigoro = IntegerField()
