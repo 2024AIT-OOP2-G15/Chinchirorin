@@ -12,7 +12,10 @@
     
     <main>
         <h2>ここはタイトルです。</h2>
-        <a href="{{ url_for('game.index') }}">プレイ</a>
+        <form action="{{ url_for('game.index') }}" method="post">
+            <label>名前<input type="text" name="name" required></label><br>
+            <button type="submit">プレイ</button>
+        </form>
         <br>
         <a href="{{ url_for('records.index') }}">戦績</a>
     </main>
