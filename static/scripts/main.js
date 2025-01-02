@@ -35,13 +35,12 @@ function init() {
 
   // テクスチャーローダーを使用して画像を読み込む
   const textureLoader = new THREE.TextureLoader();
-  const texture1 = textureLoader.load("./textures/Frame 1.png");
-  const texture2 = textureLoader.load("./textures/Frame 2.png");
-  const texture3 = textureLoader.load("./textures/Frame 3.png");
-  const texture4 = textureLoader.load("./textures/Frame 4.png");
-  const texture5 = textureLoader.load("./textures/Frame 5.png");
-  const texture6 = textureLoader.load("./textures/Frame 6.png");
-
+  const texture1 = textureLoader.load("../static/textures/Frame 1.png");
+  const texture2 = textureLoader.load("../static/textures/Frame 2.png");
+  const texture3 = textureLoader.load("../static/textures/Frame 3.png");
+  const texture4 = textureLoader.load("../static/textures/Frame 4.png");
+  const texture5 = textureLoader.load("../static/textures/Frame 5.png");
+  const texture6 = textureLoader.load("../static/textures/Frame 6.png");
   const geometry = new THREE.BoxGeometry(0.8, 0.8, 0.8);
   const materials = [
     new THREE.MeshBasicMaterial({ map: texture2 }), // 面1
