@@ -161,7 +161,7 @@ footer {
     </header>
     
     <main>
-        <!-- <h2>ここはタイトルです。</h2> -->
+        <!-- <h2>タイトル</h2> -->
          <h2><a href="{{ url_for('records.index') }}">戦績</a></h2>
         <form action="{{ url_for('game.index') }}" method="post">
             <label>名前<input type="text" name="name" required></label><br>
@@ -170,7 +170,6 @@ footer {
         <br>
         <!-- <a href="{{ url_for('records.index') }}">戦績</a> -->
 
-        <!-- 戦績テーブル -->
         <section>
             <h2>戦績一覧</h2>
             <table border="1">
@@ -200,7 +199,6 @@ footer {
                 </tbody>
             </table>
         </section>
-        <!-- 戦績テーブル追加ここまで -->
 
     </main>
 </body>
