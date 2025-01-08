@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チンチロリン</title>
-    <script src="{{ url_for('static', filename='scripts/dice.js') }}"></script>
 </head>
 <body>
     <header>
@@ -14,16 +13,22 @@
     <main>
         <h2>ここはプレイ画面です。</h2>
         <div>プレイヤー：{{name}}</div>
-        
+        <button id="rollButton" disabled>ここを押してサイコロを振る</button>
+        <div id="status">プレイヤーのターン</div>
+        <div id="playerDice">プレイヤーのサイコロ: -</div>
+        <div id="cpuDice">CPUのサイコロ: -</div>
+        <div id="result">結果: -</div>
         <br>
-        <div onclick=roll() id="number">
-            クリックしてください。
-        </div>
+        <div id="playerPoint">500</div>
         <br>
-        
+        <div id="CPUPoint">500</div>
+        <button id="startGameButton">ゲーム開始</button>
+        <br>
         <a href="{{ url_for('index') }}">タイトルに戻る</a>
         <br>
         <a href="{{ url_for('result.index') }}">結果画面</a>
     </main>
+
+    <script src="{{ url_for('static', filename='scripts/dice.js') }}"></script>
 </body>
 </html>
