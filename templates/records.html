@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='./styles/records.css') }}"
+     />
     <title>チンチロリン</title>
 </head>
 <body>
     <header>
         <h1>チンチロリン</h1>
+        <h2><a href="{{ url_for('index') }}">タイトルに戻る</a></h2>
     </header>
     
     <main>
-        <h2>ここは戦績画面です。</h2>
-        <a href="{{ url_for('index') }}">タイトルに戻る</a>
+        <h2 id="record">戦績</h2>
+        <table border="1">
+            <tr>
+                <th>名前</th>
+                <th>勝敗</th>
+                <th>あなたの役</th>
+                <th>CPUの役</th>
+            </tr>
+            {% for records in records %}
+            <tr>
+                <td>{{ records.name }}</td>
+                <td>{{ "勝利！"if records.isWin else "敗北..."}}</td>
+                <td>{{ records.playerDice }}</td>
+                <td>{{ records.cpuDice }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </main>
 </body>
 </html>
