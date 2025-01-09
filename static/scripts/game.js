@@ -34,18 +34,29 @@ function takeTurn() {
 // 勝敗を決定する
 function determineWinner() {
   let resultMessage = "";
-  if (playerResult === "シゴロ" || playerResult === "ピンゾロ" || cpuResult === "ヒフミ" || cpuResult === "ションベン") {
+  // 正規表現でゾロ目か否かを判定 
+  const zoro = /のゾロ目/;
+  const pl_zoro = zoro.test(playerResult);
+  const cpu_zoro = zoro.test(cpuResult);
+  
+  if (playerResult === cpuResult) {
+    resultMessage = "引き分け！";
+  } else if (playerResult === "シゴロ" || playerResult === "ピンゾロ" || cpuResult === "ヒフミ" || cpuResult === "ションベン" || (playerResult !== "役なし" && cpuResult === "役なし")) {
       resultMessage = "プレイヤーの勝ち！";
-  } else if (cpuResult === "シゴロ" || cpuResult === "ピンゾロ" || playerResult === "ヒフミ" || playerResult === "ションベン") {
+  } else if (cpuResult === "シゴロ" || cpuResult === "ピンゾロ" || playerResult === "ヒフミ" || playerResult === "ションベン" || (cpuResult !== "役なし" && playerResult === "役なし")) {
       resultMessage = "CPUの勝ち！";
+    // plyerゾロ目,cpu それ以外
+  } else if ((playerResult > cpuResult) || pl_zoro){
+    resultMessage = "プレイヤーの勝ち！";
+  } else if ((playerResult < cpuResult) || cpu_zoro){
+    resultMessage = "CPUの勝ち！";
   } else {
-      resultMessage = "引き分け！";
+    resultMessage = "???";
   }
   document.getElementById("result").textContent = `結果: ${resultMessage}`;
   document.getElementById("rollButton").disabled = true;
   document.getElementById("status").textContent = "ゲーム終了";
 }
-
 
 // 役を判定する関数
 function judgeChinchiro(dice1, dice2, dice3) {
