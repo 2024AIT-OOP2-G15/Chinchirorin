@@ -12,6 +12,13 @@
     
     <main>
         <h2>ここは結果画面です。</h2>
+        <p><strong>プレイヤー:</strong> {{ result.name }}</p>
+        <p class="{{ 'win' if result.isWin else 'lose' }}">
+            {{ "勝利！" if result.isWin else "敗北！" }}
+        </p>
+        <p><strong>あなたのサイコロ:</strong> {{ result.playerDice }}</p>
+        <p><strong>CPUのサイコロ:</strong> {{ result.cpuDice }}</p>
+        
         <a href="{{ url_for('index') }}">タイトルに戻る</a>
     </main>
 </body>
