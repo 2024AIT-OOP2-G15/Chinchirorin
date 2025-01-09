@@ -1,21 +1,23 @@
+import { Reseter, onCubeClick } from './dice.js';
 
 let currentTurn = "Player"
 let playerResult = "";
 let cpuResult = "";
+let diceValues = [];
 
 function roll() {
   // 3つの乱数を取得（１〜６）
   return [
-    Math.ceil(Math.random() * 6),
-    Math.ceil(Math.random() * 6),
-    Math.ceil(Math.random() * 6),
+    Math.floor(Math.random() * 7),
+    Math.floor(Math.random() * 7),
+    Math.floor(Math.random() * 7),
   ];
 }
 
 
 // ターンを進行させる
 function takeTurn() {
-  const diceValues = roll();
+  diceValues = roll();
   const role = judgeChinchiro(...diceValues);
 
   if (currentTurn === "Player") {
@@ -23,8 +25,8 @@ function takeTurn() {
       document.getElementById("playerDice").textContent = `プレイヤーのサイコロ: ${diceValues.join(", ")} (${role})`;
       currentTurn = "CPU";
       document.getElementById("status").textContent = "CPUのターン";
-      setTimeout(takeTurn, 2000); // CPUのターンを少し遅らせる
   } else if (currentTurn === "CPU") {
+      onCubeClick(diceValues);
       cpuResult = role;
       document.getElementById("cpuDice").textContent = `CPUのサイコロ: ${diceValues.join(", ")} (${role})`;
       determineWinner();
@@ -56,6 +58,9 @@ function determineWinner() {
   document.getElementById("result").textContent = `結果: ${resultMessage}`;
   document.getElementById("rollButton").disabled = true;
   document.getElementById("status").textContent = "ゲーム終了";
+  setTimeout(() => {
+    Reseter();
+  }, 3000);
 }
 
 // 役を判定する関数
@@ -102,7 +107,15 @@ function judgeChinchiro(dice1, dice2, dice3) {
 document.getElementById("rollButton").addEventListener("click", () => {
   if (currentTurn === "Player") {
       takeTurn();
+      onCubeClick(diceValues);
+      setTimeout(() => {
+        Reseter();
+      }, 3000);
+      setTimeout(() => {
+        takeTurn();
+      }, 6000);
   }
+  
 });
 
 // ゲームスタート時のボタン
@@ -116,3 +129,4 @@ document.getElementById("startGameButton").addEventListener("click", () => {
   document.getElementById("cpuDice").textContent = "CPUのサイコロ: -";
   document.getElementById("result").textContent = "結果: -";
 });
+

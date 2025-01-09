@@ -28,20 +28,18 @@
         <br>
         <div id="CPUPoint">500</div>
         <button id="startGameButton">ゲーム開始</button>
-        <script src="../static/scripts/game.js"></script>
+
+
+
         <br>
 <!--  -->
 
         <br />
         <div onclick="roll()" id="number">クリックしてください。</div>
         <div class="log">
-          <h1 id="cube1">ダイス１</h1>
-          <h1 id="cube2">ダイス２</h1>
-          <h1 id="cube3">ダイス3</h1>
         </div>
         <div id="three-container"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script src="../static/scripts/dice.js"></script>
+
         <br />
 
 <!--  -->
@@ -49,6 +47,10 @@
         <br />
         <a href="{{ url_for('result.index') }}">結果画面</a>
       </main>
+
+      <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+      <script type="module" src="../static/scripts/dice.js"></script>
+      <script type="module" src="../static/scripts/game.js"></script>
     </body>
   </body>
 </html>
