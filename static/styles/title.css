@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+    background: repeating-linear-gradient(
+        90deg,
+        #e4dcc2 0,
+        #e4dcc2 20px,
+        #dcd3b0 20px,
+        #dcd3b0 40px
+    ); /* 畳の織り目をイメージした背景 */
+    color: #333;
+}
+
+header {
+    background-color: #3e5a4e; /* 畳の縁の深緑色 */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid #2d4539;
+    display: flex; /* 子要素を横並びに配置 */
+    justify-content: space-between; /* 両端に要素を配置 */
+    align-items: center; /* 縦方向を中央揃え */
+}
+
+header h1 {
+    margin: 0 auto; /* 左右の余白を自動に設定 */
+    font-size: 2.5em;
+    letter-spacing: 0.1em;
+    text-align: center; /* テキストを中央揃え */
+}
+
+header h2 {
+    margin: 0; /* 不要な余白を削除 */
+    font-size: 1.5em;
+    color: #3e5a4e;
+    border-left: 5px solid #a99e7e; /* 和風の強調線 */
+    padding-left: 10px;
+}
+
+header h2 a {
+    text-decoration: none; /* リンクの下線を削除 */
+    color: #fff; /* リンクの色をヘッダーの文字色と統一 */
+    font-weight: bold; /* 見やすいように太字に設定 */
+}
+
+header h2 a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+main {
+    padding: 20px;
+}
+
+#record{
+    color: #3e5a4e;
+    border-left: 5px solid #a99e7e; /* 和風の強調線 */
+    padding-left: 10px;
+}
+
+form {
+    position: relative; /* 今の位置を基準 */
+    top: 40px; /* 上から10px */
+    background-color: #f8f4e6; /* 畳の風合いをイメージ */
+    padding: 20px;
+    border: 2px solid #a99e7e;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #3e5a4e;
+}
+
+form input[type="text"] {
+    width: 100%; /* ボタンと同じ幅 */
+    padding: 10px;
+    border: 2px solid #a99e7e;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+form button {
+    display: block;
+    width: 100%; /* テキストフィールドと同じ幅 */
+    padding: 10px;
+    background-color: #3e5a4e;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #2d4539;
+}
+
+a {
+    display: inline-block;
+    margin: 20px 0;
+    color: #3e5a4e;
+    text-decoration: none;
+    font-weight: bold;
+    /* border-bottom: 2px solid #3e5a4e; */
+    transition: color 0.3s, border-bottom-color 0.3s;
+}
+
+a:hover {
+    color: #2d4539;
+    border-bottom-color: #2d4539;
+}
+
+section {
+    margin-top: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f8f4e6;
+    border: 2px solid #a99e7e;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+table th, table td {
+    border: 1px solid #a99e7e;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #a99e7e;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+table tr:nth-child(even) {
+    background-color: #ede8d3;
+}
+
+table tr:hover {
+    background-color: #dcd3b3;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #3e5a4e;
+    font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+    form, table {
+        width: 100%;
+    }
+
+    form button {
+        font-size: 0.9em;
+    }
+}
