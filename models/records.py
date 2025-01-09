@@ -3,8 +3,13 @@ from .db import db
 
 class Record(Model):
 
+    # 戦績画面用
     name = CharField()
     isWin = BooleanField()
+    playerDice = CharField()
+    cpuDice = CharField()
+
+    # タイトルの戦績一覧用
     pinzoro = IntegerField()
     zorome = IntegerField()
     sigoro = IntegerField()
