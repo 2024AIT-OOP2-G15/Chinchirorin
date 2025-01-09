@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='./styles/game.css') }}"
     />
-    <title>サイコロシーン</title>
+    <title>チンチロリン</title>
   </head>
   <body>
     <body>
@@ -17,6 +17,19 @@
 
       <main>
         <div>プレイヤー：{{name}}</div>
+<!--  -->
+        <button id="rollButton" disabled>ここを押してサイコロを振る</button>
+        <div id="status">プレイヤーのターン</div>
+        <div id="playerDice">プレイヤーのサイコロ: -</div>
+        <div id="cpuDice">CPUのサイコロ: -</div>
+        <div id="result">結果: -</div>
+        <br>
+        <div id="playerPoint">500</div>
+        <br>
+        <div id="CPUPoint">500</div>
+        <button id="startGameButton">ゲーム開始</button>
+        <br>
+<!--  -->
 
         <br />
         <div onclick="roll()" id="number">クリックしてください。</div>
@@ -30,6 +43,7 @@
         <script src="../static/scripts/dice.js"></script>
         <br />
 
+<!--  -->
         <a href="{{ url_for('index') }}">タイトルに戻る</a>
         <br />
         <a href="{{ url_for('result.index') }}">結果画面</a>
