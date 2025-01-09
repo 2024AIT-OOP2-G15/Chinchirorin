@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='./styles/game.css') }}"
+    />
     <title>チンチロリン</title>
-</head>
-<body>
-    <header>
+  </head>
+  <body>
+    <body>
+      <header>
         <h1>チンチロリン</h1>
-    </header>
-    
-    <main>
-        <h2>ここはプレイ画面です。</h2>
+      </header>
+
+      <main>
         <div>プレイヤー：{{name}}</div>
+<!--  -->
         <button id="rollButton" disabled>ここを押してサイコロを振る</button>
         <div id="status">プレイヤーのターン</div>
         <div id="playerDice">プレイヤーのサイコロ: -</div>
@@ -24,11 +29,25 @@
         <div id="CPUPoint">500</div>
         <button id="startGameButton">ゲーム開始</button>
         <br>
-        <a href="{{ url_for('index') }}">タイトルに戻る</a>
-        <br>
-        <a href="{{ url_for('result.index') }}">結果画面</a>
-    </main>
+<!--  -->
 
-    <script src="{{ url_for('static', filename='scripts/dice.js') }}"></script>
-</body>
+        <br />
+        <div onclick="roll()" id="number">クリックしてください。</div>
+        <div class="log">
+          <h1 id="cube1">ダイス１</h1>
+          <h1 id="cube2">ダイス２</h1>
+          <h1 id="cube3">ダイス3</h1>
+        </div>
+        <div id="three-container"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="../static/scripts/dice.js"></script>
+        <br />
+
+<!--  -->
+        <a href="{{ url_for('index') }}">タイトルに戻る</a>
+        <br />
+        <a href="{{ url_for('result.index') }}">結果画面</a>
+      </main>
+    </body>
+  </body>
 </html>
