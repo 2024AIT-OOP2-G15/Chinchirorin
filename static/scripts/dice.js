@@ -3,6 +3,7 @@ let scene, camera, renderer;
 let cubes = []; // サイコロを格納する配列
 const cubeSpacing = 2.5; // サイコロ間の間隔
 const faceNames = [
+  "0",
   "1", // 面1の名前
   "2", // 面2の名前
   "3", // 面3の名前
@@ -51,7 +52,6 @@ function init() {
     new THREE.MeshBasicMaterial({ map: texture3 })  // 面6
   ];
 
-  // サイコロを4つ作成し、位置を調整して配置
   const totalCubes = 3;
   const startPosX = -((totalCubes - 1) * cubeSpacing) / 2; // 中央に揃えるための開始位置
   console.log("Number of cubes to generate:", totalCubes);
@@ -67,9 +67,6 @@ function init() {
   }
 
   camera.position.z = 4;
-
-  // クリックイベントを設定
-  document.addEventListener("click", onCubeClick);
 }
 
 function animate() {
@@ -107,46 +104,56 @@ function onWindowResize() {
 }
 
 // クリック時の動作
-function onCubeClick() {
+export function onCubeClick(diceValues) {
+
   if (isRotating) {
     // 回転中ならランダムな面を選んで停止
     isRotating = false; // 回転を停止
     cubes.forEach((cube, index) => {
       // ランダムに面を選択して停止する角度を設定
-      const faceIndex = Math.floor(Math.random() * 6); // 0〜5の面番号
-      console.log(`Cube ${index + 1} selected face: ${faceNames[faceIndex]}`);
-      document.getElementById(`cube${index + 1}`).innerText = faceNames[faceIndex];
+      const faceIndex = diceValues[index];
+
       switch (faceIndex) {
-        case 0: // 面1 (前面)
+        case 0:
+          cube.position.y+=5;
+          break;
+        case 1: // 面1 (前面)
           targetRotationX[index] = 0;
           targetRotationY[index] = 0;
           break;
-        case 1: // 面2 (右面)
+        case 2: // 面2 (右面)
           targetRotationX[index] = 0;
           targetRotationY[index] = -Math.PI / 2;
           break;
-        case 2: // 面3 (背面)
+        case 3: // 面3 (背面)
           targetRotationX[index] = 0;
           targetRotationY[index] = Math.PI;
           break;
-        case 3: // 面4 (左面)
+        case 4: // 面4 (左面)
           targetRotationX[index] = 0;
           targetRotationY[index] = Math.PI / 2;
           break;
-        case 4: // 面5 (上面)
+        case 5: // 面5 (上面)
           targetRotationX[index] = -Math.PI / 2;
           targetRotationY[index] = 0;
           break;
-        case 5: // 面6 (底面)
+        case 6: // 面6 (底面)
           targetRotationX[index] = Math.PI / 2;
           targetRotationY[index] = 0;
           break;
       }
+
     });
   } else {
     // 回転を再開
     isRotating = true;
   }
+}
+export function Reseter(){
+  cubes.forEach((cube, index) => {
+    cube.position.y = 0;
+    isRotating = true;
+  });
 }
 
 window.addEventListener("resize", onWindowResize);
