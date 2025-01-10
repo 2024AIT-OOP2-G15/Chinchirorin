@@ -3,7 +3,7 @@ from flask import Blueprint, render_template
 # Blueprintの作成
 result_bp = Blueprint('result', __name__, url_prefix='/result')
 
-@result_bp.route('/')
+@result_bp.route('/',methods = ['POST'])
 def index():
     # サンプルデータ
     result_data = {
