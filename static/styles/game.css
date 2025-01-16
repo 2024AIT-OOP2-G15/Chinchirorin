@@ -159,3 +159,9 @@ td {
   border-bottom: 1px solid #ddd;
   width: 50%; /* `th` と `td` の幅をテーブルの50%に */
 }
+
+@media (max-width: 1000px) {
+  #roleTable {
+    display: none;
+  }
+}
