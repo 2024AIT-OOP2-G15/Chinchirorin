@@ -133,7 +133,6 @@ a {
     color: #3e5a4e;
     text-decoration: none;
     font-weight: bold;
-    /* border-bottom: 2px solid #3e5a4e; */
     transition: color 0.3s, border-bottom-color 0.3s;
 }
 
@@ -158,6 +157,13 @@ table th, table td {
     border: 1px solid #a99e7e;
     padding: 10px;
     text-align: center;
+    font-size: 25px;
+}
+
+table td {
+    width: 150px; /* 横幅を固定 */
+    height: 150px; /* 縦幅を固定 */
+    font-size: 70px;
 }
 
 table th {
@@ -169,10 +175,6 @@ table th {
 
 table tr:nth-child(even) {
     background-color: #ede8d3;
-}
-
-table tr:hover {
-    background-color: #dcd3b3;
 }
 
 footer {
