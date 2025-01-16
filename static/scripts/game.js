@@ -110,13 +110,7 @@ function judgeChinchiro(dice1, dice2, dice3) {
       const single = dice[0] === dice[1] ? dice[2] : dice[0];
       return `${single}の目`;
   }
-
 }
-
-// 遷移ボタンのクリックイベント
-document.getElementById('resultButton').addEventListener('click',  () => {
-  document.getElementById("gameForm").submit();
-});
 
 // サイコロを振るボタンのクリックイベント
 document.getElementById("rollButton").addEventListener("click", () => {
