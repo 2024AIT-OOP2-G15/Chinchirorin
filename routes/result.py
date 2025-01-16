@@ -8,7 +8,7 @@ def index():
     # サンプルデータ
     result_data = {
         "name": "Player1",
-        "isWin": True,
+        "isWin": 0,
         "playerDice": "6, 5, 4",
         "cpuDice": "4, 3, 2"
     }

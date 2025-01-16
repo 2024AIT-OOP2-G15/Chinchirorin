@@ -10,49 +10,86 @@
     <title>チンチロリン</title>
   </head>
   <body>
-    <body>
-      <header>
-        <h1>チンチロリン</h1>
-      </header>
+    <header>
+      <h1>チンチロリン</h1>
+    </header>
 
-      <main>
-        <div>プレイヤー：{{name}}</div>
-<!--  -->
-        <button id="rollButton" disabled>ここを押してサイコロを振る</button>
-        <div id="status">プレイヤーのターン</div>
-        <div id="playerDice">プレイヤーのサイコロ: -</div>
-        <div id="cpuDice">CPUのサイコロ: -</div>
-        <div id="result">結果: -</div>
-        <br>
-        <button id="startGameButton">ゲーム開始</button>
+    <main>
+      <div>プレイヤー：{{name}}</div>
+      <button id="rollButton" disabled>ここを押してサイコロを振る</button>
+      <div id="status">プレイヤーのターン</div>
+      <div id="playerDice">プレイヤーのサイコロ: -</div>
+      <div id="cpuDice">CPUのサイコロ: -</div>
+      <div id="result">結果: -</div>
+      <br>
+      <button id="startGameButton">ゲーム開始</button>
+      
+      <br>
+      <div class="log"></div>
+      <div id="three-container"></div>
+      <br>
+      <br>
+      <a href="{{ url_for('index') }}">タイトルに戻る</a>
+      <br>
+      <button id="resultButton" disabled>結果画面</button>
+      
+      <!-- 役表ここから -->
+      <section id="roleTable">
+        <h2>役表</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>役名</th>
+              <th>条件</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ピンゾロ</td>
+              <td>1・1・1</td>
+              <td>3つのサイコロがすべて1の状態。</td>
+            </tr>
+            <tr>
+              <td>ゾロ目</td>
+              <td>2・2・2 / 3・3・3 など</td>
+              <td>3つのサイコロがすべて同じ数字。</td>
+            </tr>
+            <tr>
+              <td>シゴロ</td>
+              <td>4・5・6</td>
+              <td>４と５と６が順番に並んだ役。</td>
+            </tr>
+            <tr>
+              <td>その他</td>
+              <td>2つ同じ目＋残りのサイコロの目</td>
+              <td>残りの目の数字がポイントになる。</td>
+            </tr>
+            <tr>
+              <td>ヒフミ</td>
+              <td>1・2・3</td>
+              <td>順番に並んだ最低の役。負け役。</td>
+            </tr>
+            <tr>
+              <td>役なし</td>
+              <td>-</td>
+              <td>3つのサイコロで役が成立しない。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!-- 役表ここまで -->
 
+      <form id="gameForm" action="/result" method="post">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" id="playerDice" name="playerDice">
+        <input type="hidden" id="cpuDice" name="cpuDice">
+        <input type="hidden" id="isWin" name="isWin">
+      </form>
+    </main>
 
-
-        <br>
-<!--  -->
-
-        <br />
-        <div class="log">
-        </div>
-        <div id="three-container"></div>
-
-        <br />
-
-<!--  -->
-        <a href="{{ url_for('index') }}">タイトルに戻る</a>
-        <br />
-        <button id="resultButton" disabled>結果画面</a>
-        <form id="gameForm" action="/result" method="post">
-          <input type="hidden" name="name" value="{{ name }}">
-          <input type="hidden" id="playerDice" name="playerDice">
-          <input type="hidden" id="cpuDice" name="cpuDice">
-          <input type="hidden" id="isWin" name="isWin">
-        </form>
-      </main>
-
-      <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-      <script type="module" src="../static/scripts/dice.js"></script>
-      <script type="module" src="../static/scripts/game.js"></script>
-    </body>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module" src="../static/scripts/dice.js"></script>
+    <script type="module" src="../static/scripts/game.js"></script>
   </body>
 </html>

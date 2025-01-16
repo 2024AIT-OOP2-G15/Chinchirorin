@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チンチロリン</title>
+    <!-- スタイルシートのリンク -->
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='./styles/result.css') }}"
+      href="{{ url_for('static', filename='styles/result.css') }}"
     />
 </head>
 <body>
@@ -17,19 +18,23 @@
     <main>
         <h2>結果画面</h2>
 
-        {% if result.isWin %}
-        <div id="victory">勝利!</div>
+        <!-- 結果表示 -->
+        {% if result.isWin == 2 %}
+        <div id="victory" aria-label="勝利">勝利!</div>
+        {% elif result.isWin == 1 %}
+        <div id="draw" aria-label="引き分け">引き分け</div>
         {% else %}
-        <div id="defeat">敗北...</div>
+        <div id="defeat" aria-label="敗北">敗北...</div>
         {% endif %}
 
+        <!-- 詳細情報 -->
         <p><strong>プレイヤー:</strong> {{ result.name }}</p>
         <p><strong>あなたのサイコロ:</strong> {{ result.playerDice }}</p>
         <p><strong>CPUのサイコロ:</strong> {{ result.cpuDice }}</p>
         
-        <a id="title" href="{{ url_for('index') }}">タイトルに戻る</a>
+        <!-- タイトルに戻るリンク -->
+        <a id="title" href="{{ url_for('index') }}" aria-label="タイトル画面に戻る">タイトルに戻る</a>
     </main>
 
 </body>
 </html>
-
