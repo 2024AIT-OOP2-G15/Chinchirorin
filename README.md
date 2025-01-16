@@ -1,5 +1,13 @@
 # Chinchirorin
 
+
+## 動作条件
+Python 3.12.5
+## 必要なライブラリ
+flask , peewee
+## 実行方法
+app.pyを実行して、ログに出力されたURLに飛んでください。
+
 # 概要
 python+flaskでチンチロっぽいゲームができるWebアプリです。
 
