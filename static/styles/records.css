@@ -16,10 +16,10 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    display: flex;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-bottom: 5px solid #2d4539;
-    display: flex; /* 子要素を横並びに配置 */
-    justify-content: space-between; /* 両端に要素を配置 */
+    justify-content: center; /* 両端に要素を配置 */
     align-items: center; /* 縦方向を中央揃え */
 }
 
@@ -27,15 +27,13 @@ header h1 {
     margin: 0 auto; /* 左右の余白を自動に設定 */
     font-size: 2.5em;
     letter-spacing: 0.1em;
-    text-align: center; /* テキストを中央揃え */
 }
 
 header h2 {
+    position: absolute;
     margin: 0; /* 不要な余白を削除 */
     font-size: 1.5em;
     color: #3e5a4e;
-    border-left: 5px solid #a99e7e; /* 和風の強調線 */
-    padding-left: 10px;
 }
 
 header h2 a {
@@ -44,8 +42,32 @@ header h2 a {
     font-weight: bold; /* 見やすいように太字に設定 */
 }
 
-header h2 a:hover {
-    text-decoration: underline; /* ホバー時に下線を表示 */
+#title_button {
+    position: absolute;
+    top:35px;
+    right:150px;
+    background:#e4dcc2; /*背景色の指定*/
+    color:black; /*テキストの色の指定*/
+    border-bottom:#333 5px solid; /*下部の境界線の指定*/
+    width:200px; /*幅の指定*/
+    border-radius:5px;
+    padding:0px;
+}
+
+#title_button:hover {
+    background-color: #a99e7e;
+}
+
+@media(max-width: 800px){
+    #title_button {
+        width:100px; /*幅の指定*/ 
+    }
+}
+
+@media(max-width: 970px){
+    #title_button {
+        right:10px;
+    }
 }
 
 main {
