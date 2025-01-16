@@ -1,25 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: serif;
+}
 body {
-    margin: 0;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  margin: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    #e4dcc2 0,
+    #e4dcc2 20px,
+    #dcd3b0 20px,
+    #dcd3b0 40px
+  ); /* 畳の織り目をイメージした背景 */
+  color: #333;
+}
 
-  #three-container {
-    width: 500px; /* 横幅を80%に設定（必要に応じて調整） */
-    height: 200px; /* 高さを指定 */
-    margin: 0 auto; /* 横方向に中央揃え */
-    position: relative; /* relativeにして配置調整 */
-    background-color: #ffffff;
-  }
+header {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  width: 100%;
+  background-color: #3e5a4e; /* 畳の縁の深緑色 */
+  color: hsl(0, 0%, 100%);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 5px solid #2d4539;
+  justify-content: space-between; /* 両端に要素を配置 */
+}
+#status {
+  position: absolute;
+  top: 50px;
+  z-index: 1;
+  text-align: center;
+  font-size: 50px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  width: 100%;
+}
 
-  .log {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-header{
-    background-color: #f9f9f9;
-    border-bottom: 2px solid #ccc;
+#three-container {
+  width: 100%; /* 横幅を80%に設定（必要に応じて調整） */
+  height: 100vh; /* 高さを指定 */
+  margin: 0 auto; /* 横方向に中央揃え */
+  position: relative; /* relativeにして配置調整 */
+  background-color: #ffffff;
+}
+
+#play-button {
+  width: 100%;
+  position: absolute;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column; /* ボタンを縦に並べる */
+  align-items: center; /* 水平方向に中央揃え */
+  justify-content: center; /* 垂直方向に中央揃え */
+  text-emphasis: none;
+}
+
+#rollButton,
+#startGameButton {
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  margin: 10px; /* ボタン間の間隔を追加 */
+  background-color: #3e5a4e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* 背景色、移動、影のアニメーションを追加 */
+}
+
+#rollButton:hover,
+#startGameButton:hover {
+  background-color: #2d4539;
+  transform: translateY(-3px); /* ボタンを少し上に移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 上に移動した際に影を追加 */
+}
+
+#back-button {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  width: 100px;
+  height: 50px;
+  background-color: #ffffff;
+  color: #3e5a4e;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center; /* 垂直方向に中央揃え */
+  justify-content: center; /* 水平方向に中央揃え */
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* 背景色、移動、影のアニメーションを追加 */
+}
+
+#back-button:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-3px); /* ボタンを少し上に移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 上に移動した際に影を追加 */
+}
+
+#back-button a {
+  color: inherit; /* 親の色を継承 */
+  text-decoration: none; /* リンクの下線を消す */
+}
+#score {
+  width: 100%;
+  position: absolute;
+  bottom: 13%;
+}
+/* テーブル全体 */
+table {
+  width: 350px; /* テーブルの幅を50%に設定 */
+  margin: 20px auto; /* 上下にスペースを開け、左右中央揃え */
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* ヘッダーのスタイル */
+th {
+  background-color: #3e5a4e;
+  color: white;
+  text-align: center; /* 左から中央に変更 */
+  padding: 5px;
+  font-size: 1rem;
+  width: 50%; /* `th` と `td` の幅をテーブルの50%に */
+}
+
+/* セルのスタイル */
+td {
+  padding: 5px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  width: 50%; /* `th` と `td` の幅をテーブルの50%に */
 }

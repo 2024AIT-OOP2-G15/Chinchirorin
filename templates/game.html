@@ -8,6 +8,12 @@
       href="{{ url_for('static', filename='./styles/game.css') }}"
     />
     <title>チンチロリン</title>
+
+    <script>
+      // FlaskからのデータをJavaScriptのグローバル変数として渡す
+      const playerName = "{{ name }}";
+      console.log(playerName);
+    </script>
   </head>
   <body>
     <body>
@@ -16,41 +22,34 @@
       </header>
 
       <main>
-        <div>プレイヤー：{{name}}</div>
-<!--  -->
-        <button id="rollButton" disabled>ここを押してサイコロを振る</button>
-        <div id="status">プレイヤーのターン</div>
-        <div id="playerDice">プレイヤーのサイコロ: -</div>
-        <div id="cpuDice">CPUのサイコロ: -</div>
-        <div id="result">結果: -</div>
-        <br>
-        <button id="startGameButton">ゲーム開始</button>
+        <div id="status">開始ボタンを押してね</div>
 
-
-
-        <br>
-<!--  -->
-
-        <br />
-        <div class="log">
-        </div>
         <div id="three-container"></div>
 
-        <br />
+        <div id="score">
+          <table>
+            <tr>
+              <th>{{name}}</th>
+              <td id="playerDice">-</td>
+            </tr>
+            <tr>
+              <th>CPU</th>
+              <td id="cpuDice">-</td>
+            </tr>
+          </table>
+        </div>
 
-<!--  -->
-        <a href="{{ url_for('index') }}">タイトルに戻る</a>
-        <br />
-        <button id="resultButton" disabled>結果画面</a>
-        <form id="gameForm" action="/result" method="post">
-          <input type="hidden" name="name" value="{{ name }}">
-          <input type="hidden" id="playerDice" name="playerDice">
-          <input type="hidden" id="cpuDice" name="cpuDice">
-          <input type="hidden" id="isWin" name="isWin">
-        </form>
+        <div id="play-button">
+          <button id="rollButton" disabled>サイコロを振る</button>
+          <button id="startGameButton">ゲーム開始</button>
+        </div>
+        <a id= "back-button" href="{{ url_for('index') }}">戻る</a>
       </main>
 
-      <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+      <script
+        type="module"
+        src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+      ></script>
       <script type="module" src="../static/scripts/dice.js"></script>
       <script type="module" src="../static/scripts/game.js"></script>
     </body>

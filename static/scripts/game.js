@@ -6,6 +6,8 @@ let cpuResult = "";
 let diceValues = [];
 let isWin = false;
 
+document.getElementById("rollButton").style.display = "none";
+
 function roll() {
   // 3つの乱数を取得（１〜６）
   return [
@@ -18,18 +20,19 @@ function roll() {
 
 // ターンを進行させる
 function takeTurn() {
+
   diceValues = roll();
   const role = judgeChinchiro(...diceValues);
 
   if (currentTurn === "Player") {
       playerResult = role;
-      document.getElementById("playerDice").textContent = `プレイヤーのサイコロ: ${diceValues.join(", ")} (${role})`;
+      document.getElementById("playerDice").textContent = ` ${diceValues.join(", ")} (${role})`;
       currentTurn = "CPU";
       document.getElementById("status").textContent = "CPUのターン";
   } else if (currentTurn === "CPU") {
       onCubeClick(diceValues);
       cpuResult = role;
-      document.getElementById("cpuDice").textContent = `CPUのサイコロ: ${diceValues.join(", ")} (${role})`;
+      document.getElementById("cpuDice").textContent = `${diceValues.join(", ")} (${role})`;
       determineWinner();
   }
 }
@@ -58,16 +61,12 @@ function determineWinner() {
   } else {
     resultMessage = "???";
   }
-  document.getElementById("result").textContent = `結果: ${resultMessage}`;
   document.getElementById("rollButton").disabled = true;
-  document.getElementById("startGameButton").disabled = true;
-  document.getElementById("resultButton").disabled = false;
-  document.getElementById("status").textContent = "ゲーム終了";
-
-  document.getElementById("playerDice").value = playerDice;
-  document.getElementById("cpuDice").value = cpuDice;
-  document.getElementById("isWin").value = isWin;
+  document.getElementById("status").textContent = `${resultMessage} `;
   setTimeout(() => {
+    // ボタンを非表示にする
+    document.getElementById("rollButton").style.display = "none";
+    document.getElementById("startGameButton").style.display = "block";
     Reseter();
   }, 3000);
 }
@@ -139,10 +138,14 @@ document.getElementById("startGameButton").addEventListener("click", () => {
   currentTurn = "Player";
   playerResult = "";
   cpuResult = "";
-  document.getElementById("status").textContent = "プレイヤーのターン";
+  document.getElementById("status").textContent = `${playerName}のターン`;
   document.getElementById("rollButton").disabled = false;
-  document.getElementById("playerDice").textContent = "プレイヤーのサイコロ: -";
-  document.getElementById("cpuDice").textContent = "CPUのサイコロ: -";
-  document.getElementById("result").textContent = "結果: -";
+  document.getElementById("playerDice").textContent = "-";
+  document.getElementById("cpuDice").textContent = "-";
+
+  // ボタンを非表示にする
+  document.getElementById("startGameButton").style.display = "none";
+  document.getElementById("rollButton").style.display = "block";
+
 });
 
