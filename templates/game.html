@@ -44,6 +44,49 @@
           <button id="startGameButton">ゲーム開始</button>
         </div>
         <a id= "back-button" href="{{ url_for('index') }}">戻る</a>
+        <!-- 役表ここから -->
+<section id="roleTable">
+  <h2>役表</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>役名</th>
+        <th>条件</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ピンゾロ</td>
+        <td>⚀⚀⚀</td>
+      </tr>
+      <tr>
+        <td>ゾロ目</td>
+        <td>⚁⚁⚁ ⚂⚂⚂ ⚃⚃⚃ ⚄⚄⚄ ⚅⚅⚅</td>
+      </tr>
+      <tr>
+        <td>シゴロ</td>
+        <td>⚃⚄⚅</td>
+      </tr>
+      <tr>
+        <td>通常の目</td>
+        <td>⚁⚁⚅ ⚁⚁⚄ ⚁⚁⚃ ⚁⚁⚂ ⚂⚂⚁ ⚁⚁⚀ など</td>
+      </tr>
+      <tr> 
+        <td>役なし</td>
+        <td>⚁⚂⚃ など</td>
+      </tr>
+      <tr>
+        <td>ヒフミ</td>
+        <td>⚀⚁⚂</td>
+      </tr>      
+      <tr>
+        <td>しょんべん</td>
+        <td> ⚂⚃×など</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<!-- 役表ここまで -->
       </main>
 
       <script

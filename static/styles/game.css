@@ -47,6 +47,20 @@ header {
   position: relative; /* relativeにして配置調整 */
   background-color: #ffffff;
 }
+#roleTable {
+  width: 300px;  /* 幅を指定 */
+  height: 370.5px; /* 高さを指定 */
+  position: fixed; /* 画面全体に対して固定 */
+  bottom: 13%;
+  left: 0; /* 画面の左端に配置 */
+  display: flex;
+  justify-content: center; /* 中央寄せ */
+  align-items: center; /* 垂直方向にも中央揃え */
+  overflow: auto; /* 内容がオーバーフローする場合、スクロールバーを表示 */
+  background-color: #f9f9f97a; /* 背景色を設定 */
+  border-radius: 8px; /* 角を丸く */
+}
+
 
 #play-button {
   width: 100%;
