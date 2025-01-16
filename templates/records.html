@@ -27,7 +27,8 @@
             {% for records in records %}
             <tr>
                 <td>{{ records.name }}</td>
-                <td>{{ "勝利！" if records.isWin == 2 else "引き分け" if records.isWin == 1 else "敗北..." }}</td>
+                <td class="{% if records.isWin == 2 %}win{% elif records.isWin == 1 %}draw{% else %}lose{% endif %}">
+                    {{ "勝利！" if records.isWin == 2 else "引き分け" if records.isWin == 1 else "敗北..." }}</td>
                 <td>{{ records.playerDice }}</td>
                 <td>{{ records.cpuDice }}</td>
             </tr>
