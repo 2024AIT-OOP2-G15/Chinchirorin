@@ -4,6 +4,7 @@ let currentTurn = "Player"
 let playerResult = "";
 let cpuResult = "";
 let diceValues = [];
+let isWin = false;
 
 document.getElementById("rollButton").style.display = "none";
 
@@ -47,14 +48,16 @@ function determineWinner() {
   if (playerResult === cpuResult) {
     resultMessage = "引き分け！";
   } else if (playerResult === "シゴロ" || playerResult === "ピンゾロ" || cpuResult === "ヒフミ" || cpuResult === "ションベン" || (playerResult !== "役なし" && cpuResult === "役なし")) {
-      resultMessage = "プレイヤーの勝ち！";
+    resultMessage = "プレイヤーの勝ち！";
+    isWin = true;
   } else if (cpuResult === "シゴロ" || cpuResult === "ピンゾロ" || playerResult === "ヒフミ" || playerResult === "ションベン" || (cpuResult !== "役なし" && playerResult === "役なし")) {
-      resultMessage = "CPUの勝ち！";
+    resultMessage = "CPUの勝ち！";
     // plyerゾロ目,cpu それ以外
   } else if ((playerResult > cpuResult) || pl_zoro){
     resultMessage = "プレイヤーの勝ち！";
+    isWin = true;
   } else if ((playerResult < cpuResult) || cpu_zoro){
-    resultMessage = "CPUの勝ち！";
+    resultMessage = "CPUの勝ち！"; 
   } else {
     resultMessage = "???";
   }
@@ -71,6 +74,11 @@ function determineWinner() {
 // 役を判定する関数
 function judgeChinchiro(dice1, dice2, dice3) {
   const dice = [dice1, dice2, dice3].sort((a, b) => a - b);
+
+  // ションベンになる場合
+  if(dice[0] === 0 || dice[1] === 0 || dice[2] === 0) {
+    return "ションベン";
+  }
 
   // シゴロ (4, 5, 6)
   if (dice[0] === 4 && dice[1] === 5 && dice[2] === 6) {
@@ -103,10 +111,12 @@ function judgeChinchiro(dice1, dice2, dice3) {
       return `${single}の目`;
   }
 
-  // ションベンになる場合
-  return "ションベン";
 }
 
+// 遷移ボタンのクリックイベント
+document.getElementById('resultButton').addEventListener('click',  () => {
+  document.getElementById("gameForm").submit();
+});
 
 // サイコロを振るボタンのクリックイベント
 document.getElementById("rollButton").addEventListener("click", () => {
