@@ -5,7 +5,7 @@ class Record(Model):
 
     # 戦績画面用
     name = CharField()
-    isWin = BooleanField()
+    isWin = IntegerField()
     playerDice = CharField()
     cpuDice = CharField()
 

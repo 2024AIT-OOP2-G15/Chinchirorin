@@ -144,3 +144,12 @@ footer {
         font-size: 0.9em;
     }
 }
+  .win {
+    color: red; /* 勝利は赤色 */
+  }
+  .draw {
+    color: gray; /* 引き分けはグレー */
+  }
+  .lose {
+    color: blue; /* 敗北は青色 */
+  }
