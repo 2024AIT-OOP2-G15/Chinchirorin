@@ -16,9 +16,16 @@ for blueprint in blueprints:
 def index():
     # データベースからすべてのレコードを取得
     record_list = Record.select()
-    
+    pinzoro_total = 0;
+    zorome_total = 0
+    sigoro_total = 0
+    normal_total = 0
+    yakunasi_total = 0
+    shonben_total = 0
+    hifumi_total = 0
+
     # 必要なフィールドだけを持つデータのリストを作成
-    records = [
+    records_data = [
         {
             "pinzoro": record.pinzoro,
             "zorome": record.zorome,
@@ -31,6 +38,33 @@ def index():
         for record in record_list
     ]
     
+    for record in records_data:
+        if record["pinzoro"] == 1:
+            pinzoro_total += 1
+        if record["zorome"] == 1:
+            zorome_total += 1
+        if record["sigoro"] == 1:
+            sigoro_total += 1
+        if record["normal"] == 1:
+            normal_total += 1
+        if record["yakunasi"] == 1:
+            yakunasi_total += 1
+        if record["shonben"] == 1:
+            shonben_total += 1
+        if record["hifumi"] == 1:
+            hifumi_total += 1
+
+    records = [
+        {
+            "pinzoro": pinzoro_total,
+            "zorome": zorome_total,
+            "sigoro": sigoro_total,
+            "normal": normal_total,
+            "yakunasi": yakunasi_total,
+            "shonben": shonben_total,
+            "hifumi": hifumi_total
+        }
+    ]
     # テンプレートにデータを渡す
     return render_template('title.html', records=records)
 
