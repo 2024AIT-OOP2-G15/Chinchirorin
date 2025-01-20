@@ -3,6 +3,7 @@ from models import initialize_database, Record
 from routes import blueprints
 
 app = Flask(__name__)
+app.secret_key = "chinchirorin"
 
 # データベースの初期化
 initialize_database()

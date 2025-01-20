@@ -4,7 +4,7 @@ let currentTurn = "Player"
 let playerResult = "";
 let cpuResult = "";
 let diceValues = [];
-let isWin = false;
+let isWin = 1;
 
 document.getElementById("rollButton").style.display = "none";
 
@@ -47,17 +47,20 @@ function determineWinner() {
   
   if (playerResult === cpuResult) {
     resultMessage = "引き分け！";
+    isWin = 1;
   } else if (playerResult === "シゴロ" || playerResult === "ピンゾロ" || cpuResult === "ヒフミ" || cpuResult === "ションベン" || (playerResult !== "役なし" && cpuResult === "役なし")) {
     resultMessage = "プレイヤーの勝ち！";
-    isWin = true;
+    isWin = 2;
   } else if (cpuResult === "シゴロ" || cpuResult === "ピンゾロ" || playerResult === "ヒフミ" || playerResult === "ションベン" || (cpuResult !== "役なし" && playerResult === "役なし")) {
     resultMessage = "CPUの勝ち！";
+    isWin = 0;
     // plyerゾロ目,cpu それ以外
   } else if ((playerResult > cpuResult) || pl_zoro){
     resultMessage = "プレイヤーの勝ち！";
-    isWin = true;
+    isWin = 2;
   } else if ((playerResult < cpuResult) || cpu_zoro){
     resultMessage = "CPUの勝ち！"; 
+    isWin = 0;
   } else {
     resultMessage = "???";
   }
@@ -69,8 +72,37 @@ function determineWinner() {
     document.getElementById("startGameButton").style.display = "block";
     Reseter();
   }, 3000);
+
+  const result = {
+    "name": playerName,
+    "isWin": isWin,
+    "playerDice": playerResult,
+    "cpuDice": cpuResult
+  }
+  console.log(result);
+  setTimeout(() => {
+    send(result)
+  }, 2000);
+  
 }
 
+function send(result) {
+  fetch('/game/manager', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "data": result }) // 送信するデータ
+  })
+  .then(response => {
+    if (response.redirected) {
+      window.location.href = response.url; // リダイレクト先へ遷移
+    }
+  })
+  .catch(error => {
+    console.error('[ERROR] in send function.', error);
+  });
+}
 // 役を判定する関数
 function judgeChinchiro(dice1, dice2, dice3) {
   const dice = [dice1, dice2, dice3].sort((a, b) => a - b);
@@ -142,4 +174,3 @@ document.getElementById("startGameButton").addEventListener("click", () => {
   document.getElementById("rollButton").style.display = "block";
 
 });
-
