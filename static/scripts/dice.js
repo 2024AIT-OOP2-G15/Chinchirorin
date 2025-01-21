@@ -1,8 +1,7 @@
 let scene, camera, renderer;
 let cubes = []; // サイコロを格納する配列
 let plate; // 皿
-const cubeSpacing = 2.5; // サイコロ間の間隔
-const faceNames = ["0", "1", "2", "3", "4", "5", "6"]; // 面の名前
+const cubeSpacing = 1.5; // サイコロ間の間隔
 
 let targetRotationX = [];
 let targetRotationY = [];
@@ -87,7 +86,7 @@ function init() {
     const cube = new THREE.Mesh(geometry, materials);
 
     cube.castShadow = true;
-    cube.position.x = 0;
+    cube.position.x = (startPosX + i * cubeSpacing);
     cube.position.y = 0;
     cube.position.z = 30;
     scene.add(cube);
@@ -142,8 +141,9 @@ function animate() {
       cube.rotation.y += (targetRotationY[index] - cube.rotation.y) * 0.1;
       cube.position.z += (0 - cube.position.z) * 0.1;
       if(cube.position.z > 0.5){
-          cube.position.x += getRandomPosition(0, -0.3, 0, 0.3);
-          cube.position.y += getRandomPosition(0, -0.3, 0, 0.3);
+          cube.position.x += getRandomPosition(0.05, -0.05, 0.05, -0.05);
+          cube.position.y += getRandomPosition(0.05, -0.05, 0.05, -0.05);
+          
       }
 
       if (
@@ -183,7 +183,7 @@ export function onCubeClick(diceValues) {
         case 0:
           cube.position.x = getRandomPosition(-5, -15, 5, 15);
           cube.position.y = getRandomPosition(-5, -13, 5, 13);
-          cube.position.z = -50;
+          cube.position.z = 0;
           break;
         case 1:
           targetRotationX[index] = 0;
@@ -223,12 +223,14 @@ export function changeBackground(newTexturePath) {
 
 // サイコロをリセットする関数
 export function Reseter() {
+  const totalCubes = 3;
+  const startPosX = -((totalCubes - 1) * cubeSpacing) / 2; // サイコロの開始位置
   cubes.forEach((cube, index) => {
-    const startPosX = 0// 初期のx座標を計算
-    cube.position.set(startPosX, 0, 0); // x座標とy座標を元に戻す
-    cube.position.z = 30; // z座標を元に戻す
-    isRotating = true;
+    const posX = startPosX + index * cubeSpacing; // 各サイコロのx座標を計算
+    cube.position.set(posX, 0, 30); // x, y, z座標をリセット
   });
+
+  isRotating = true; // 回転を再開
 }
 
 window.addEventListener("resize", onWindowResize);

@@ -28,7 +28,6 @@ function takeTurn() {
       playerResult = role;
       document.getElementById("playerDice").textContent = ` ${diceValues.join(", ")} (${role})`;
       currentTurn = "CPU";
-      document.getElementById("status").textContent = "CPUのターン";
   } else if (currentTurn === "CPU") {
       onCubeClick(diceValues);
       cpuResult = role;
@@ -119,6 +118,7 @@ document.getElementById("rollButton").addEventListener("click", () => {
       onCubeClick(diceValues);
       setTimeout(() => {
         Reseter();
+        document.getElementById("status").textContent = "CPUのターン";
       }, 3000);
       setTimeout(() => {
         takeTurn();
