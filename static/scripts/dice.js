@@ -1,8 +1,7 @@
 let scene, camera, renderer;
 let cubes = []; // サイコロを格納する配列
 let plate; // 皿
-const cubeSpacing = 2.5; // サイコロ間の間隔
-const faceNames = ["0", "1", "2", "3", "4", "5", "6"]; // 面の名前
+const cubeSpacing = 1.5; // サイコロ間の間隔
 
 let targetRotationX = [];
 let targetRotationY = [];
@@ -48,14 +47,15 @@ function init() {
     backgroundMaterial
   );
   backgroundPlane.position.set(0, 0, -5); // カメラの後ろに配置
+  backgroundPlane.receiveShadow = true; // 背景が影を受けるように設定
   scene.add(backgroundPlane);
 
   // 照明を追加
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.1); // 柔らかい全体光
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.15); // 柔らかい全体光
   scene.add(ambientLight);
 
-  const spotLight = new THREE.SpotLight(0xffffff, 1.2);
-  spotLight.position.set(0, 10, 15); // カメラ側に配置
+  const spotLight = new THREE.SpotLight(0xffffff, 1);
+  spotLight.position.set(0, 10, 25); // カメラ側に配置
   spotLight.castShadow = true;
   scene.add(spotLight);
 
@@ -86,8 +86,9 @@ function init() {
     const cube = new THREE.Mesh(geometry, materials);
 
     cube.castShadow = true;
-    cube.position.x = startPosX + i * cubeSpacing;
+    cube.position.x = (startPosX + i * cubeSpacing);
     cube.position.y = 0;
+    cube.position.z = 30;
     scene.add(cube);
     cubes.push(cube);
     targetRotationX.push(cube.rotation.x);
@@ -96,15 +97,15 @@ function init() {
 
   // 皿を作成
   const outerMaterial = new THREE.MeshStandardMaterial({
-    color: 0x8b4513,
+    color: 0x500000,
     roughness: 0.8,
     metalness: 0.2,
     side: THREE.FrontSide,
   });
   const innerMaterial = new THREE.MeshStandardMaterial({
     color: 0xd2b48c,
-    roughness: 0.6,
-    metalness: 0.1,
+    roughness: 1.0,
+    metalness: 0.01,
     side: THREE.BackSide,
   });
 
@@ -124,7 +125,7 @@ function init() {
   plate.rotation.x = Math.PI / -2;
   scene.add(plate);
 
-  camera.position.set(0, 0, 15);
+  camera.position.set(0, -3, 20);
   camera.lookAt(0, 0, 0);
 }
 
@@ -133,15 +134,22 @@ function animate() {
   requestAnimationFrame(animate);
   cubes.forEach((cube, index) => {
     if (isRotating) {
-      cube.rotation.x += 0.1;
-      cube.rotation.y += 0.1;
+      cube.rotation.x += 1;
+      cube.rotation.y += 1;
     } else {
       cube.rotation.x += (targetRotationX[index] - cube.rotation.x) * 0.1;
       cube.rotation.y += (targetRotationY[index] - cube.rotation.y) * 0.1;
+      cube.position.z += (0 - cube.position.z) * 0.1;
+      if(cube.position.z > 0.5){
+          cube.position.x += getRandomPosition(0.05, -0.05, 0.05, -0.05);
+          cube.position.y += getRandomPosition(0.05, -0.05, 0.05, -0.05);
+          
+      }
 
       if (
         Math.abs(targetRotationX[index] - cube.rotation.x) < 0.1 &&
         Math.abs(targetRotationY[index] - cube.rotation.y) < 0.1
+      
       ) {
         isRotating = false;
       }
@@ -158,7 +166,13 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
   renderer.setSize(container.offsetWidth, container.offsetHeight);
 }
-
+// ランダムな範囲で値を取得する関数
+function getRandomPosition(min1, max1, min2, max2) {
+  // min1-max1, min2-max2の範囲でランダムな値を取得
+  const position = (Math.random() < 0.5 ? Math.random() * (max1 - min1) + min1 : Math.random() * (max2 - min2) + min2);
+  
+  return position;
+}
 // サイコロをクリックしたときの動作
 export function onCubeClick(diceValues) {
   if (isRotating) {
@@ -167,7 +181,9 @@ export function onCubeClick(diceValues) {
       const faceIndex = diceValues[index];
       switch (faceIndex) {
         case 0:
-          cube.position.y += 5;
+          cube.position.x = getRandomPosition(-5, -15, 5, 15);
+          cube.position.y = getRandomPosition(-5, -13, 5, 13);
+          cube.position.z = 0;
           break;
         case 1:
           targetRotationX[index] = 0;
@@ -207,10 +223,14 @@ export function changeBackground(newTexturePath) {
 
 // サイコロをリセットする関数
 export function Reseter() {
-  cubes.forEach((cube) => {
-    cube.position.y = 0;
-    isRotating = true;
+  const totalCubes = 3;
+  const startPosX = -((totalCubes - 1) * cubeSpacing) / 2; // サイコロの開始位置
+  cubes.forEach((cube, index) => {
+    const posX = startPosX + index * cubeSpacing; // 各サイコロのx座標を計算
+    cube.position.set(posX, 0, 30); // x, y, z座標をリセット
   });
+
+  isRotating = true; // 回転を再開
 }
 
 window.addEventListener("resize", onWindowResize);
