@@ -10,10 +10,20 @@ document.getElementById("rollButton").style.display = "none";
 
 function roll() {
   // 3つの乱数を取得（１〜６）
+  let rand1 = Math.floor(Math.random() * 6) + 1
+  let rand2 = Math.floor(Math.random() * 6) + 1
+  let rand3 = Math.floor(Math.random() * 6) + 1
+  if(Math.floor(Math.random() * 9)==0){
+    rand1 = 0
+  }
+  if(Math.floor(Math.random() * 9)==0){
+    rand2 = 0
+  }
+  if(Math.floor(Math.random() * 9)==0){
+    rand3 = 0
+  }
   return [
-    Math.floor(Math.random() * 7),
-    Math.floor(Math.random() * 7),
-    Math.floor(Math.random() * 7),
+    rand1,rand2,rand3
   ];
 }
 
