@@ -1,6 +1,3 @@
-# database
-# 一旦共有はなしで
-*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
