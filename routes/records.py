@@ -10,14 +10,13 @@ def index():
     # データ取得
     record_list = Record.select()
 
-    records = [
-        {
+    records = []
+    for record in record_list:
+        records.insert(0, {
             "name": record.name,
             "isWin": record.isWin,
             "playerDice": record.playerDice,
             "cpuDice": record.cpuDice,
-        }
-        for record in record_list
-    ]
+        })
     
     return render_template('records.html',records=records)

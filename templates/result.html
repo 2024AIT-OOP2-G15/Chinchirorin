@@ -17,8 +17,10 @@
     <main>
         <h2>結果画面</h2>
 
-        {% if result.isWin %}
+        {% if result.isWin == 2 %}
         <div id="victory">勝利!</div>
+        {% elif result.isWin == 1 %}
+        <div id="draw">引き分け</div>
         {% else %}
         <div id="defeat">敗北...</div>
         {% endif %}

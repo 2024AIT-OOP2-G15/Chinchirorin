@@ -55,9 +55,9 @@ function determineWinner() {
   const cpu_zoro = zoro.test(cpuResult);
   
   if (playerResult === cpuResult) {
-    resultMessage = "引き分け！";
+    resultMessage = "引き分け";
     isWin = 1;
-  } else if (playerResult === "シゴロ" || playerResult === "ピンゾロ" || cpuResult === "ヒフミ" || cpuResult === "ションベン" || (playerResult !== "役なし" && cpuResult === "役なし")) {
+  } else if (playerResult === "シゴロ" || playerResult === "ピンゾロ" || cpuResult === "ヒフミ" || cpuResult === "ションベン" || ((playerResult !== "役なし" && playerResult !== "ションベン") && cpuResult === "役なし")) {
     resultMessage = "プレイヤーの勝ち！";
     isWin = 2;
   } else if (cpuResult === "シゴロ" || cpuResult === "ピンゾロ" || playerResult === "ヒフミ" || playerResult === "ションベン" || (cpuResult !== "役なし" && playerResult === "役なし")) {

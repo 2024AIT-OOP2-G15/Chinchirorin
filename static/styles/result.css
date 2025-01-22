@@ -61,6 +61,14 @@ main {
     margin-top: 50px; /* 上部の余白 */
 }
 
+#draw {
+    font-size: 10em; /* 文字を大きくする */
+    color: gray;
+    text-align: center; /* 中央揃え */
+    font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; /* 標準フォント */
+    margin-top: 50px; /* 上部の余白 */
+}
+
 #defeat {
     font-size: 10em; /* 通常サイズ */
     color: rgb(0, 1, 78); /* 黒色 */
